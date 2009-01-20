@@ -93,8 +93,9 @@ filter:    erb
 				<ul>
 				</ul>
 			</div>
-			<!-- Del.icio.us badge -->
+			<!-- Del.icio.us badge 
 			<script type="text/javascript" src="http://feeds.delicious.com/v2/js/networkbadge/mikedamage?showadd&amp;icon=s&amp;name&amp;itemcount&amp;nwcount&amp;fancount"></script>
+			-->
 		</div>
 		
 	</div>
