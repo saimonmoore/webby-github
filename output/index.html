@@ -75,7 +75,13 @@
 			<h2 class="page_title">Welcome</h2>
 <p class="content">I&#8217;m a fledgling programmer/web developer from historic <a href="http://www.chesternj.org/">Chester, New Jersey</a>. I work for an über cool company called <a href="http://www.fifthroomcreative.com">Fifth Room Creative</a>, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.</p>
 <p>I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I&#8217;m constantly creating my own custom solutions to problems I encounter at work, and I&#8217;ve decided to share them here on <a href="http://github.com">GitHub</a> so that I can learn from people with more experience than me. I&#8217;d like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.</p>
-<p><a href="http://greenhouse.homedns.org/mike.pdf">Test PDF link</a></p>
+<p>This site is managed by <a href="http://webby.rubyforge.org">Webby</a>, a content management system that uses ERB and Textile to output static files. Once I make changes to the site I run</p>
+<pre>
+	$ webby
+	$ git add .
+	$ git commit -m "commit message describing the changes I just made"
+</pre>
+<p>From there I setup a <code>post-commit</code> hook that synchronizes Webby&#8217;s <code>output/</code> directory with a repository linked to <a href="http://github.com/mikedamage/mikedamage.github.com/tree/master">http://github.com/mikedamage/mikedamage.github.com.git</a>. That same script automatically makes a commit to that repository and pushes the changes up to GitHub. And there you have it &#8212; my static CMS.</p>
 		</div>
 
 		<div id="sidebar" class="prefix-1 span-7 last">
