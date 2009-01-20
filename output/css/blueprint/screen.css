@@ -265,29 +265,27 @@ hr.space {background:#fff;color:#fff;}
 body a.noicon { background:none; padding:0; margin:0; }
 
 /* Make sure the icons are not cut */
-/*a[href^="http:"], a[href^="mailto:"], a[href^="http:"]:visited, 
-a[href$=".pdf"], a[href$=".doc"], a[href$=".xls"], a[href$=".rss"], 
-a[href$=".rdf"], a[href^="aim:"] {
+a.external_link, a.mailto_link, a.pdf_link, 
+a.doc_link, a.xls_link, a.rss_link {
   padding:2px 22px 2px 0;
   margin:-2px 0;
   background-repeat: no-repeat;
   background-position: right center;
 }
-*/
+
 /* External links */
-/*a[href^="http:"]          { background-image: url(../images/icons/external.png); padding-right: 14px; } */
-a[href^="mailto:"]        { background-image: url(../images/icons/email.png); }
+a.external_link      { background-image: url(/images/icons/external.png); padding-right: 14px; }
+a.mailto_link        { background-image: url(/images/icons/email.png); }
 /* a[href^="http:"]:visited  { background-image: url(../images/icons/visited.png); } */
 
 /* Files */
-a[href$=".pdf"]   { background-image: url(../images/icons/pdf.png); }  
-a[href$=".doc"]   { background-image: url(../images/icons/doc.png); }  
-a[href$=".xls"]   { background-image: url(../images/icons/xls.png); }  
+a.pdf_link   { background-image: url(/images/icons/pdf.png); }  
+a.doc_link   { background-image: url(/images/icons/doc.png); }  
+a.xls_link   { background-image: url(/images/icons/xls.png); }  
  
 /* Misc */
-a[href$=".rss"], 
-a[href$=".rdf"]   { background-image: url(../images/icons/feed.png); }
-a[href^="aim:"]   { background-image: url(../images/icons/im.png); }
+a.rss_link  { background-image: url(/images/icons/feed.png); }
+/*a[href^="aim:"]   { background-image: url(../images/icons/im.png); } */
 a[href^="http://mikedamage.github.com"] { background:none; padding:0; margin:0; }
 
 /* TEXT CLASSES */

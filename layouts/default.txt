@@ -54,7 +54,17 @@ filter:    erb
 			
 			$("a[href^='http://']")
 				.attr('target', '_blank')
-				.addClass("external");
+				.addClass("external_link");
+			$("a[href$='.pdf']").addClass("pdf_link").removeClass("external_link");
+			$("a[href^='mailto:']").addClass("mailto_link").removeClass("external_link");
+			$("a[href$='.doc']").addClass("doc_link").removeClass("external_link");
+			$("a[href$='.xls']").addClass("xls_link").removeClass("external_link");
+			$("a[href$='.rss']")
+				.add("a[href$='.rdf']")
+				.add("a[href$='.atom']")
+				.addClass("rss_link")
+				.removeClass("external_link");
+			
 		});
 	</script>
 </head>

@@ -50,7 +50,17 @@
 			
 			$("a[href^='http://']")
 				.attr('target', '_blank')
-				.addClass("external");
+				.addClass("external_link");
+			$("a[href$='.pdf']").addClass("pdf_link").removeClass("external_link");
+			$("a[href^='mailto:']").addClass("mailto_link").removeClass("external_link");
+			$("a[href$='.doc']").addClass("doc_link").removeClass("external_link");
+			$("a[href$='.xls']").addClass("xls_link").removeClass("external_link");
+			$("a[href$='.rss']")
+				.add("a[href$='.rdf']")
+				.add("a[href$='.atom']")
+				.addClass("rss_link")
+				.removeClass("external_link");
+			
 		});
 	</script>
 </head>
@@ -65,6 +75,7 @@
 			<h2 class="page_title">Welcome</h2>
 <p class="content">I&#8217;m a fledgling programmer/web developer from historic <a href="http://www.chesternj.org/">Chester, New Jersey</a>. I work for an über cool company called <a href="http://www.fifthroomcreative.com">Fifth Room Creative</a>, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.</p>
 <p>I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I&#8217;m constantly creating my own custom solutions to problems I encounter at work, and I&#8217;ve decided to share them here on <a href="http://github.com">GitHub</a> so that I can learn from people with more experience than me. I&#8217;d like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.</p>
+<p><a href="http://greenhouse.homedns.org/mike.pdf">Test PDF link</a></p>
 		</div>
 
 		<div id="sidebar" class="prefix-1 span-7 last">
