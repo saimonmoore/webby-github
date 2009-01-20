@@ -1,51 +1,40 @@
 
+/* Header */
 body {
-  font-family: Verdana, "Bitstream Vera Sans", sans-serif;
+  color: #101D0C;
+  background: #F0FCFC url(../images/splat_top_left.png) top left no-repeat;
 }
 
-/* Headings
- * --------------------------------------------------------------------- */
-h1,h2,h3,h4,h5,h6 { color: #111; }
-
-/* Text Elements
- * --------------------------------------------------------------------- */
-a                 { color: #125AA7; }
-a:hover           { color: #000; }
-blockquote        { color: #666; }
-
-pre {
-  background: #eee;
-  border:     1px solid #ddd;
+h1 {
+  letter-spacing: -2px;
+  font-size: 36px !important;
 }
 
-hr {
-  background: #B2CCFF;
-  color:      #B2CCFF;
+.sitename {
+  color: #58C748;
 }
 
-/* Tables
- * --------------------------------------------------------------------- */
-table {
-  border-top:     1px solid #ddd;
-  border-left:    1px solid #ddd;
-}
-th,td {
-  border-bottom:  1px solid #ddd;
-  border-right:   1px solid #ddd;
+.divider_slashes {
+  color: #cccccc;
+  font-size: 72px;
 }
 
-/* Default Classes
- * --------------------------------------------------------------------- */
-p.quiet { color: #666; }
-.alt    { color: #666; }
-
-p.title {
-  color: #111;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2em;
-  margin-bottom: 0.75em;
+#header {
+  border-bottom: dotted 1px #101D0C;
 }
 
-#header p.title { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
+h1, h2, h3 {
+	font-weight:normal;
+}
+
+#sidebar ul {
+  list-style: none;
+  color: #101D0C;
+  margin-left: 0;
+}
+#sidebar ul li {
+  border-bottom: 1px dotted #101D0C;
+  padding: 5px 0;
+}
 
 /* EOF */

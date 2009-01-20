@@ -4,64 +4,47 @@ filter:    erb
 layout:    nil   # no layout
 
 color:
-  border:      "#ddd"
-  header:      "#111"
-  link:        "#125AA7"
-  link-hover:  "#000"
-  blockquote:  "#666"
-  box-bg:      "#eee"
-  highlight:   "#B2CCFF"
-  quiet:       "#666"
-  alt:         "#666"
+  text: "#101D0C"
+  body: "#F0FCFC"
+  header: "#58C748"
 ---
 
+/* Header */
 body {
-  font-family: Verdana, "Bitstream Vera Sans", sans-serif;
+  color: <%= @page.color['text']%>;
+  background: <%= @page.color['body'] %> url(../images/splat_top_left.png) top left no-repeat;
 }
 
-/* Headings
- * --------------------------------------------------------------------- */
-h1,h2,h3,h4,h5,h6 { color: <%= @page.color['header'] %>; }
-
-/* Text Elements
- * --------------------------------------------------------------------- */
-a                 { color: <%= @page.color['link'] %>; }
-a:hover           { color: <%= @page.color['link-hover'] %>; }
-blockquote        { color: <%= @page.color['blockquote'] %>; }
-
-pre {
-  background: <%= @page.color['box-bg'] %>;
-  border:     1px solid <%= @page.color['border'] %>;
+h1 {
+  letter-spacing: -2px;
+  font-size: 36px !important;
 }
 
-hr {
-  background: <%= @page.color['highlight'] %>;
-  color:      <%= @page.color['highlight'] %>;
+.sitename {
+  color: <%= @page.color['header'] %>;
 }
 
-/* Tables
- * --------------------------------------------------------------------- */
-table {
-  border-top:     1px solid <%= @page.color['border'] %>;
-  border-left:    1px solid <%= @page.color['border'] %>;
-}
-th,td {
-  border-bottom:  1px solid <%= @page.color['border'] %>;
-  border-right:   1px solid <%= @page.color['border'] %>;
+.divider_slashes {
+  color: #cccccc;
+  font-size: 72px;
 }
 
-/* Default Classes
- * --------------------------------------------------------------------- */
-p.quiet { color: <%= @page.color['quiet'] %>; }
-.alt    { color: <%= @page.color['alt'] %>; }
-
-p.title {
-  color: #111;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2em;
-  margin-bottom: 0.75em;
+#header {
+  border-bottom: dotted 1px <%= @page.color['text'] %>;
 }
 
-#header p.title { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
+h1, h2, h3 {
+	font-weight:normal;
+}
+
+#sidebar ul {
+  list-style: none;
+  color: <%= @page.color['text'] %>;
+  margin-left: 0;
+}
+#sidebar ul li {
+  border-bottom: 1px dotted <%= @page.color['text'] %>;
+  padding: 5px 0;
+}
 
 /* EOF */

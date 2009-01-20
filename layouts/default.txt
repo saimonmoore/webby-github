@@ -12,47 +12,84 @@ filter:    erb
    <meta name="author" content="<%= @page.author %>" />
 
    <!--- Blueprint CSS Framework -->
-   <link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
-   <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
 
    <!-- CodeRay syntax highlighting CSS -->
-   <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+	<link rel="stylesheet" href="css/coderay.css" type="text/css" />
 
    <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="css/site.css" type="text/css" media="screen, projection" />
+	
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function gitFeed(feed) {
+			var tmp = '';
+			for (var i=0; i<feed.value.items.length; i++) {
+				var title = feed.value.items[i].title.replace('mikedamage', 'Mike');
+				tmp += '<li>'+'<a href="'+feed.value.items[i].link+'" target="_blank">'
+					+ title
+					+ '</a> <br/><em>'+jQuery.timeago(feed.value.items[i].pubDate)+"</em></li>\n";
+			}
+			jQuery("#github-commits .loading").hide('fast');
+			jQuery("#github-commits ul").append(tmp);
+		}
+		
+		function deliciousFeed(feed) {
+			var tmp = '';
+			for (var i=0; i<feed.value.items.length; i++) {
+				tmp += '<li><a href="'+feed.value.items[i].link+'" target="_blank">'
+				+ feed.value.items[i].title
+				+'</a><br/><em>'+jQuery.timeago(feed.value.items[i].pubDate)+"</em></li>\n";
+			}
+			jQuery("#delicious-bookmarks .loading").hide('fast');
+			jQuery("#delicious-bookmarks ul").append(tmp);
+		}
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.getScript("http://pipes.yahoo.com/mikedamage/github_activity?run&_render=json&_callback=gitFeed");
+			$.getScript("http://pipes.yahoo.com/mikedamage/recent_bookmarks?run&_render=json&_callback=deliciousFeed");
+			
+			$("a[href^='http://']")
+				.attr('target', '_blank')
+				.addClass("external");
+		});
+	</script>
 </head>
 <body>
+	<div class="container">
+		<div id="header" class="span-24 last">
+			<h1><span class="sitename">Mike Green</span> Freelance Web Afficionado</h1>
+			<span>a 23 year old developer, living and working in beautiful, suburban New Jersey</span>
+		</div>
+		
+		<div id="mainbody" class="span-16">
+			<%= @content %>
+		</div>
 
-<div class="container">
+		<div id="sidebar" class="prefix-1 span-7 last">
+			<div id="github-commits">
+				<h2>Recently on GitHub&hellip;</h2>
+				<img src="images/loading_2.gif" width="16" height="16" class="loading" />
+				<ul>
+				</ul>
+			</div>
 
-   <div class="column span-20 prepend-2 append-2 first last" id="header">
-     <p class="title">A New Website</p>
-     <hr>
-   </div>
-
-   <div class="column span-15 prepend-2 first">
-      <%= @content %>
-   </div>
-
-   <div class="column span-5 append-2 last">
-      <h4>Sidebar</h4>
-      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue. </p>
-
-      <div class="box">
-         <p class="last">Mauris a lectus. Aliquam erat volutpat. Phasellus ultrices mi a sapien. Nunc rutrum egestas lorem. Duis ac sem sagittis elit tincidunt gravida.</p>
-      </div>
-
-      <p class="quiet">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue.</p>
-
-      <h5>Incremental leading</h5>
-      <p class="incr">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras ornare mattis nunc. Mauris venenatis, pede sed aliquet vehicula, lectus tellus pulvinar neque, non cursus sem nisi vel augue. sed aliquet vehicula, lectus tellus.</p>
-   </div>
-
-   <div class="column span-20 prepend-2 append-2 first last" id="footer">
-     <hr />
-     <p>This website was created with <a href="http://webby.rubyforge.org">Webby</a></p>
-   </div>
-
-</div>
+			<div id="delicious-bookmarks">
+				<h2>Tasty new bookmarks</h2>
+				<img src="images/loading_2.gif" width="16" height="16" class="loading" />
+				<ul>
+				</ul>
+			</div>
+			<!-- Del.icio.us badge -->
+			<script type="text/javascript" src="http://feeds.delicious.com/v2/js/networkbadge/mikedamage?showadd&amp;icon=s&amp;name&amp;itemcount&amp;nwcount&amp;fancount"></script>
+		</div>
+		
+	</div>
+	<a href="http://github.com/mikedamage" target="_blank">
+		<img alt="Fork me on GitHub" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" style="border: 0pt none ; position: absolute; top: 0pt; right: 0pt;"/>
+	</a>
 </body>
 </html>
