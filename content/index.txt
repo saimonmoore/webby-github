@@ -8,7 +8,7 @@ filter:
 
 h2(page_title). Welcome
 
-p(content). I'm a fledgling programmer/web developer from historic "Chester, New Jersey":http://www.chesternj.org/. I work for an über cool company called "Fifth Room Creative":http://www.fifthroomcreative.com, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.
+I'm a fledgling programmer/web developer from historic "Chester, New Jersey":http://www.chesternj.org/. I work for an über cool company called "Fifth Room Creative":http://www.fifthroomcreative.com, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.
 
 I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I'm constantly creating my own custom solutions to problems I encounter at work, and I've decided to share them here on "GitHub":http://github.com so that I can learn from people with more experience than me. I'd like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.
 

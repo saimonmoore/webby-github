@@ -33,6 +33,10 @@ h1 {
   border-bottom: dotted 1px <%= @page.color['text'] %>;
 }
 
+#mainbody p {
+	text-align:justify;
+}
+
 h1, h2, h3 {
 	font-weight:normal;
 }
