@@ -12,12 +12,21 @@ I'm a fledgling programmer/web developer from historic "Chester, New Jersey":htt
 
 I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I'm constantly creating my own custom solutions to problems I encounter at work, and I've decided to share them here on "GitHub":http://github.com so that I can learn from people with more experience than me. I'd like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.
 
-This site is managed by "Webby":http://webby.rubyforge.org, a content management system that uses ERB and Textile to output static files. Once I make changes to the site I run
+h2. Blog
 
-<pre>
-	$ webby
-	$ git add .
-	$ git commit -m "commit message describing the changes I just made"
-</pre>
+<%
+	posts = @pages.find(:all, :in_directory => "blog", :recursive => true, :sort_by => "created_at", :reverse => true)
+	posts.delete_if {|post| post.url =~ }
+	paginate(posts, 3) do |post|
+-%>
 
-From there I setup a @post-commit@ hook that synchronizes Webby's @output/@ directory with a repository linked to "http://github.com/mikedamage/mikedamage.github.com.git":http://github.com/mikedamage/mikedamage.github.com/tree/master. That same script automatically makes a commit to that repository and pushes the changes up to GitHub. And there you have it -- my static CMS.
+h3(post_title). <%= post.title %>
+
+_<%= post.created_at %>_
+
+<%= render(post) %>
+
+<% end -%>
+
+<%= link_to("previous", @pager.prev) if @pager.prev? %>
+<%= link_to("next", @pager.next) if @pager.next? %>

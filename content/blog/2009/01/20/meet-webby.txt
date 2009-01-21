@@ -1,0 +1,17 @@
+--- 
+title:      meet_webby
+created_at: 2009-01-20 23:56:27.517737 -05:00
+blog_post:  true
+filter:
+  - textile
+--- 
+
+This site is managed by "Webby":http://webby.rubyforge.org, a content management system that uses ERB and Textile to output static files. Once I make changes to the site I run
+
+<pre>
+	$ webby
+	$ git add .
+	$ git commit -m "commit message describing the changes I just made"
+</pre>
+
+From there I setup a @post-commit@ hook that synchronizes Webby's @output/@ directory with a repository linked to "http://github.com/mikedamage/mikedamage.github.com.git":http://github.com/mikedamage/mikedamage.github.com/tree/master. That same script automatically makes a commit to that repository and pushes the changes up to GitHub. And there you have it -- my static CMS.
