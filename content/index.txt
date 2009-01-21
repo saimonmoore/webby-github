@@ -15,18 +15,14 @@ I realy love what I do, and I have a constant desire to learn new things. For be
 h2. Blog
 
 <%
-	posts = @pages.find(:all, :in_directory => "blog", :recursive => true, :sort_by => "created_at", :reverse => true)
-	posts.delete_if {|post| post.url =~ }
-	paginate(posts, 3) do |post|
+	now = Time.now
+	year = now.strftime("%Y")
+	month = now.strftime("%m")
+	path = "blog/#{year}/#{month}"
+	posts = @pages.find(:all, :in_directory => path, :recursive => false, :sort_by => "created_at", :reverse => true)
+	posts.each do |post|
 -%>
-
-h3(post_title). <%= post.title %>
-
-_<%= post.created_at %>_
 
 <%= render(post) %>
 
 <% end -%>
-
-<%= link_to("previous", @pager.prev) if @pager.prev? %>
-<%= link_to("next", @pager.next) if @pager.next? %>
