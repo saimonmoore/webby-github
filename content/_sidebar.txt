@@ -1,0 +1,21 @@
+---
+filter: erb
+---
+<div id="sidebar" class="prefix-1 span-7 last">
+	<div id="github-commits">
+		<h2>Recently on GitHub&hellip;</h2>
+		<img src="images/loading_2.gif" width="16" height="16" class="loading" />
+		<ul>
+		</ul>
+	</div>
+
+	<div id="delicious-bookmarks">
+		<h2>Tasty new bookmarks</h2>
+		<img src="images/loading_2.gif" width="16" height="16" class="loading" />
+		<ul>
+		</ul>
+	</div>
+	<!-- Del.icio.us badge 
+	<script type="text/javascript" src="http://feeds.delicious.com/v2/js/networkbadge/mikedamage?showadd&amp;icon=s&amp;name&amp;itemcount&amp;nwcount&amp;fancount"></script>
+	-->
+</div>
