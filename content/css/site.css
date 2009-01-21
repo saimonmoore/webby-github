@@ -1,54 +1,41 @@
 ---
 extension: css
-filter:    erb
+filter:    sass
 layout:    nil   # no layout
-
-color:
-  text: "#101D0C"
-  body: "#F0FCFC"
-  header: "#58C748"
 ---
 
-/* Header */
-body {
-  color: <%= @page.color['text']%>;
-  background: <%= @page.color['body'] %> url(../images/splat_top_left.png) top left no-repeat;
-}
+!text = #101D0C
+!background = #F0FCFC
+!header = #58C748
 
-h1 {
-  letter-spacing: -2px;
-  font-size: 36px !important;
-}
+body
+  :color= !text
+  :background= !background + " url(../images/splat_top_left.png) top left no-repeat"
 
-.sitename {
-  color: <%= @page.color['header'] %>;
-}
+h1
+  :letter-spacing -2px
+  :font-size 36px !important
+  :font-weight normal
 
-.divider_slashes {
-  color: #cccccc;
-  font-size: 72px;
-}
+.sitename
+  :color= !header
 
-#header {
-  border-bottom: dotted 1px <%= @page.color['text'] %>;
-}
+#header
+  :border-bottom= !text + " dotted 1px"
 
-#mainbody p {
-	text-align:justify;
-}
+#mainbody
+  p
+    :text-align justify
+  
+h2, h3, h4
+  :font-weight normal
 
-h1, h2, h3 {
-	font-weight:normal;
-}
+#sidebar
+  ul
+    :list-style none
+    :color= !text
+    :margin-left 0
+    li
+      :border-bottom= !text + " 1px dotted"
+      :padding 5px 0
 
-#sidebar ul {
-  list-style: none;
-  color: <%= @page.color['text'] %>;
-  margin-left: 0;
-}
-#sidebar ul li {
-  border-bottom: 1px dotted <%= @page.color['text'] %>;
-  padding: 5px 0;
-}
-
-/* EOF */
