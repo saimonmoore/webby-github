@@ -2,6 +2,10 @@
 title:      Meet Webby
 created_at: 2009-01-20 23:56:27.517737 -05:00
 blog_post:  true
+tags:
+  - webby
+  - ruby
+  - blogging
 filter:
   - erb
   - textile
@@ -15,7 +19,7 @@ Two resources I found _extremely_ helpful in creating this blog are:
 * "Building Static Websites with Webby":http://clarkware.com/cgi/blosxom/2008/08/06 by Mike Clark
 * "Top 12 Reasons Webby Makes Me Happy":http://www.locomotivation.com/blog/2008/11/17/webby-makes-me-happy.html by Wynn Netherland at "Locomotivation":http://www.locomotivation.com
 
-As awesome as Webby is, however, there are a couple problems inherent to a static content management system. It means that I can't dynamically handle comments to my blog posts, can't manage my own in-site search engine, and a few other little gotcha's. Luckily, there are other places on the interwebs to procure these services and there are a few fellow Webby bloggers who have solved these problems before I was even aware of their existence. For comments, I created a free account over at "Disqus":http://disqus.com after I saw their comment system on Locomotivation. I'm still not sure if or how I will implement a sitewide search box thingy, but Webby auto-generaGoogle is probably sufficient for this.
+As awesome as Webby is, however, there are a couple problems inherent to a static content management system. It means that I can't dynamically handle comments to my blog posts, can't manage my own in-site search engine, and a few other little gotcha's. Luckily, there are other places on the interwebs to procure these services and there are a few fellow Webby bloggers who have solved these problems before I was even aware of their existence. For comments, I created a free account over at "Disqus":http://disqus.com after I saw their comment system on Locomotivation. I'm still not sure if or how I will implement a sitewide search box thingy, but Webby auto-generates monthly and yearly blog post indexes, and Google is probably sufficient for my search box needs.
 
 All in all I'm really happy with the results I've gotten so far from Webby, and I had to do virtually no customization thanks to its templates and command line application. I finally feel like I have a blog that I have full control over!
 
