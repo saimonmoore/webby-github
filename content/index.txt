@@ -7,22 +7,30 @@ filter:
 
 <h2 class="page_title">Welcome</h2>
 
-<p>I&#8217;m a fledgling programmer/web developer from historic <a href="http://www.chesternj.org/">Chester, New Jersey</a>. I work for an über cool company called <a href="http://www.fifthroomcreative.com">Fifth Room Creative</a>, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.</p>
-<p>I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I&#8217;m constantly creating my own custom solutions to problems I encounter at work, and I&#8217;ve decided to share them here on <a href="http://github.com">GitHub</a> so that I can learn from people with more experience than me. I&#8217;d like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.</p>
+<p>
+	I&#8217;m a fledgling programmer/web developer from historic <a href="http://www.chesternj.org/">Chester, New Jersey</a>. I work for an über cool company called <a href="http://www.fifthroomcreative.com">Fifth Room Creative</a>, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.
+</p>
+<p>
+	I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I&#8217;m constantly creating my own custom solutions to problems I encounter at work, and I&#8217;ve decided to share them here on <a href="http://github.com">GitHub</a> so that I can learn from people with more experience than me. I&#8217;d like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.
+</p>
 
 
-<h2>Blog Posts</h2>
 
-<%
-	posts = @pages.find(:all,
-		:blog_post => true,
-		:sort_by => :created_at, 
-		:reverse => true)
-	paginate(posts, 5) do |post|
--%>
-<div class="blog_post">
+<div id="blog">
+	<h2>Blog Posts <a href="/blog.xml"><img src="/images/icons/feed.png" width="16" height="16" class="feed_icon" /></a></h2>
 	
-	<%= dateline(post) %><a href="<%= post.url %>" class="post_title"><%= post.title %></a>
-
+	<%
+		posts = @pages.find(:all,
+			:blog_post => true,
+			:sort_by => :created_at, 
+			:reverse => true)
+		paginate(posts, 10) do |post|
+	-%>
+	<div class="blog_post">
+	
+		<%= dateline(post) %><a href="<%= post.url %>" class="post_title"><%= post.title %></a>
+		
+	</div>
+	<% end -%>
 </div>
-<% end -%>
+

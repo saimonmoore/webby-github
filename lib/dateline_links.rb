@@ -22,6 +22,12 @@ module DatelineLinksHelper
 		html
 	end
 	
+	def post_page_dateline(page)
+		time = page.created_at
+		html = %(<em>#{time.strftime("%A %B %d, %Y")}</em>)
+		html
+	end
+	
 end
 
 Webby::Helpers.register(DatelineLinksHelper)

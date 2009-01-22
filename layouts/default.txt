@@ -41,16 +41,50 @@ filter:    erb
 			for (var i=0; i<feed.value.items.length; i++) {
 				tmp += '<li><a href="'+feed.value.items[i].link+'" target="_blank">'
 				+ feed.value.items[i].title
-				+'</a><br/><em>'+jQuery.timeago(feed.value.items[i].pubDate)+"</em></li>\n";
+				+'</a><br/><em>'+jQuery.timeago(parseDate(feed.value.items[i].pubDate))+"</em></li>\n";
 			}
 			jQuery("#delicious-bookmarks .loading").hide('fast');
 			jQuery("#delicious-bookmarks ul").append(tmp);
 		}
+		
+		function twitterFeed(feed) {
+			for (var i=0; i<feed.length; i++) {
+				$('#twitter-status ul').append('<li class="tweet">'
+					+ feed[i].text
+					+ '<br/><em>'
+					+ jQuery.timeago(parseDate(feed[i].created_at))
+					+ '</em>'
+					+ '</li>');
+			}
+		}
+		
+		function parseDate(date) {
+			var dateArray = date.split(" ");
+			var dateString = dateArray[1]+" "+dateArray[2]+", "+dateArray[5]+" "+dateArray[3]+" "+dateArray[4];
+			return dateString;
+		}
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.getScript("http://pipes.yahoo.com/mikedamage/github_activity?run&_render=json&_callback=gitFeed");
-			$.getScript("http://pipes.yahoo.com/mikedamage/recent_bookmarks?run&_render=json&_callback=deliciousFeed");
+			// $.getScript("http://pipes.yahoo.com/mikedamage/github_activity?run&_render=json&_callback=gitFeed");
+			// $.getScript("http://pipes.yahoo.com/mikedamage/recent_bookmarks?run&_render=json&_callback=deliciousFeed");
+			$.ajax({
+				dataType: 'jsonp',
+				url: 'http://pipes.yahoo.com/mikedamage/github_activity?run&_render=json&_callback=gitFeed',
+				jsonp: 'gitFeed'
+			});
+			$.ajax({
+				dataType: 'jsonp',
+				url: 'http://pipes.yahoo.com/mikedamage/recent_bookmarks?run&_render=json&_callback=deliciousFeed',
+				jsonp: 'deliciousFeed'
+			});
+			$.ajax({
+				dataType: 'jsonp',
+				data: { count: 3, callback: 'twitterFeed' },
+				url: 'http://twitter.com/statuses/user_timeline/mikedamage.json',
+				jsonp: 'twitterFeed'
+			});
+			
 			
 			$("a[href^='http://']")
 				.attr('target', '_blank')
@@ -71,24 +105,51 @@ filter:    erb
 <body>
 	<div class="container">
 		<div id="header" class="span-24 last">
-			<h1><span class="sitename">Mike Green</span> Freelance Web Afficionado</h1>
+			<h1><a href="/index.html" class="sitename">Mike Green</a> Freelance Web Afficionado</h1>
 			<span>a 23 year old developer, living and working in beautiful, suburban New Jersey</span>
 		</div>
 		
 		<div id="mainbody" class="span-16">
 			<%= @content %>
+			
+			<div id="add_this">
+				<!-- AddThis Button BEGIN -->
+				<script type="text/javascript">var addthis_pub="mikedamage";</script>
+				<a href="http://www.addthis.com/bookmark.php" class="noicon" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s7.addthis.com/static/btn/lg-addthis-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+				<!-- AddThis Button END -->
+			</div>
 		</div>
 
 		<div id="sidebar" class="prefix-1 span-7 last">
+			<div id="twitter-status">
+				<h2>
+					<a href="http://twitter.com/mikedamage" target="_blank" class="noicon">
+						<img src="/images/icons/twitter_blue.png"/>
+					</a> 
+					Twitter Status 
+				</h2>
+				
+				<ul></ul>
+			</div>
 			<div id="github-commits">
-				<h2>Recently on GitHub&hellip;</h2>
+				<h2>
+					<a href="http://github.com/mikedamage" target="_blank" class="noicon">
+						<img src="/images/icons/github_icon.png"/>
+					</a> 
+					Recently on GitHub&hellip;
+				</h2>
 				<img src="images/loading_2.gif" width="16" height="16" class="loading" />
 				<ul>
 				</ul>
 			</div>
 
 			<div id="delicious-bookmarks">
-				<h2>Tasty new bookmarks</h2>
+				<h2>
+					<a href="http://del.icio.us/mikedamage" target="_blank" class="noicon">
+						<img src="/images/icons/delicious_icon.png"/>
+					</a> 
+					Tasty new bookmarks
+				</h2>
 				<img src="images/loading_2.gif" width="16" height="16" class="loading" />
 				<ul>
 				</ul>

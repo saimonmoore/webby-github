@@ -7,6 +7,7 @@ layout:    nil   # no layout
 !text = #101D0C
 !background = #F0FCFC
 !header = #58C748
+!code = #CC3333
 
 body
   :color= !text
@@ -20,8 +21,14 @@ h1
 h3, h4
   :font-weight normal
 
-.sitename
-  :color= !header
+a.noicon
+  :background none
+  :padding none
+  
+h1
+  a.sitename
+    :color= !header + " !important"
+    :text-decoration none !important
 
 #header
   :border-bottom= !text + " dotted 1px"
@@ -30,11 +37,19 @@ h3, h4
   p
     :text-align justify
   .dateline
-    :padding-top 0
-    :margin-top 0
-    :line-height 14px
+    :font-family "Andale Mono", "Lucide Console", Courier, monospace
+    :color= !code
+  #add_this
+    :margin 10px 0
+    :text-align right
 
 #sidebar
+  h2
+    :font-weight normal
+    .header_link
+      :font-size 12px
+  img
+    :vertical-align text-bottom
   ul
     :list-style none
     :color= !text
