@@ -1,17 +1,22 @@
 --- 
-title:      meet_webby
+title:      Meet Webby
 created_at: 2009-01-20 23:56:27.517737 -05:00
 blog_post:  true
 filter:
+  - erb
   - textile
 --- 
 
-This site is managed by "Webby":http://webby.rubyforge.org, a content management system that uses ERB and Textile to output static files. Once I make changes to the site I run
+I’m still trying to find the best solution for plain-text blogging. This page (and the site that is being built around it) currently uses "Webby":http://webby.rubyforge.org, which is a really awesome static website manager that tries to deliver the same functionality as the *V* in Rails’ MVC(Model View Controller) stack. It lets me write my stylesheets in Sass, my page content in Textile, and my page layouts in ERB; all of which I’ve grown to love from learning Rails. As I learn more, I'll be posting quite a bit about Webby because there aren't many other blogs that use it or talk about it.
 
-<pre>
-	$ webby
-	$ git add .
-	$ git commit -m "commit message describing the changes I just made"
-</pre>
+Two resources I found _extremely_ helpful in creating this blog are:
+* "Building Static Websites with Webby":http://clarkware.com/cgi/blosxom/2008/08/06 by Mike Clark
+* "Top 12 Reasons Webby Makes Me Happy":http://www.locomotivation.com/blog/2008/11/17/webby-makes-me-happy.html by Wynn Netherland at "Locomotivation":http://www.locomotivation.com
 
-From there I setup a @post-commit@ hook that synchronizes Webby's @output/@ directory with a repository linked to "http://github.com/mikedamage/mikedamage.github.com.git":http://github.com/mikedamage/mikedamage.github.com/tree/master. That same script automatically makes a commit to that repository and pushes the changes up to GitHub. And there you have it -- my static CMS.
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

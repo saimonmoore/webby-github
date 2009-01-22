@@ -3,26 +3,26 @@ title:       Mike Green // Freelance Web Afficionado
 created_at:  2008-08-02 14:06:40.000000 -06:00
 filter:
   - erb
-  - textile
 ---
 
-h2(page_title). Welcome
+<h2 class="page_title">Welcome</h2>
 
-I'm a fledgling programmer/web developer from historic "Chester, New Jersey":http://www.chesternj.org/. I work for an über cool company called "Fifth Room Creative":http://www.fifthroomcreative.com, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.
+<p>I&#8217;m a fledgling programmer/web developer from historic <a href="http://www.chesternj.org/">Chester, New Jersey</a>. I work for an über cool company called <a href="http://www.fifthroomcreative.com">Fifth Room Creative</a>, located in Denville, NJ. We do some pretty awesome stuff for clients ranging from Panasonic all the way down to local small businesses.</p>
+<p>I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I&#8217;m constantly creating my own custom solutions to problems I encounter at work, and I&#8217;ve decided to share them here on <a href="http://github.com">GitHub</a> so that I can learn from people with more experience than me. I&#8217;d like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.</p>
 
-I realy love what I do, and I have a constant desire to learn new things. For better or for worse, I'm constantly creating my own custom solutions to problems I encounter at work, and I've decided to share them here on "GitHub":http://github.com so that I can learn from people with more experience than me. I'd like to thank the developers behind GitHub for creating a place where people like me can learn from seasoned developers and exchange ideas with their peers.
 
-h2. Blog
+<h2>Blog Posts</h2>
 
 <%
-	now = Time.now
-	year = now.strftime("%Y")
-	month = now.strftime("%m")
-	path = "blog/#{year}/#{month}"
-	posts = @pages.find(:all, :in_directory => path, :recursive => false, :sort_by => "created_at", :reverse => true)
-	posts.each do |post|
+	posts = @pages.find(:all,
+		:blog_post => true,
+		:sort_by => :created_at, 
+		:reverse => true)
+	paginate(posts, 5) do |post|
 -%>
+<div class="blog_post">
+	
+	<%= dateline(post) %><a href="<%= post.url %>" class="post_title"><%= post.title %></a>
 
-<%= render(post) %>
-
+</div>
 <% end -%>

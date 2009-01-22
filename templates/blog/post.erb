@@ -2,7 +2,12 @@
 title:      <%= title %>
 created_at: <%= Time.now.to_y %>
 blog_post:  true
+tags:
+  - tag 1
+  - tag 2
+  - et cetera
 filter:
+  - erb
   - textile
 --- 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc congue ipsum vestibulum libero. Aenean vitae justo. Nam eget tellus. Etiam convallis, est eu lobortis mattis, lectus tellus tempus felis, a ultricies erat ipsum at metus.
@@ -14,3 +19,11 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi et risus. Aliqua
 bq. Nullam mattis, odio ut tempus facilisis, metus nisl facilisis metus, auctor consectetuer felis ligula nec mauris. Vestibulum odio erat, fermentum at, commodo vitae, ultrices et, urna. Mauris vulputate, mi pulvinar sagittis condimentum, sem nulla aliquam velit, sed imperdiet mi purus eu magna. Nulla varius metus ut eros. Aenean aliquet magna eget orci. Class aptent taciti sociosqu ad litora.
 
 Vivamus euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse vel nibh ut turpis dictum sagittis. Aliquam vel velit a elit auctor sollicitudin. Nam vel dui vel neque lacinia pretium. Quisque nunc erat, venenatis id, volutpat ut, scelerisque sed, diam. Mauris ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec mattis. Morbi dignissim sollicitudin libero. Nulla lorem.
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

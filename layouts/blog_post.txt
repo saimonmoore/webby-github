@@ -12,17 +12,17 @@ filter:    erb
    <meta name="author" content="<%= @page.author %>" />
 
    <!--- Blueprint CSS Framework -->
-	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
 
    <!-- CodeRay syntax highlighting CSS -->
-	<link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+	<link rel="stylesheet" href="css/coderay.css" type="text/css" />
 
    <!-- Homepage CSS -->
-	<link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="css/site.css" type="text/css" media="screen, projection" />
 	
-	<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		function gitFeed(feed) {
 			var tmp = '';

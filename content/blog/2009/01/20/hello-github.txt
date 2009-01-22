@@ -1,16 +1,23 @@
 --- 
-title:      hello_github
+title:      Hello, Github!
 created_at: 2009-01-20 22:45:27.455372 -05:00
 blog_post:  true
 filter:
+  - erb
   - textile
 --- 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc congue ipsum vestibulum libero. Aenean vitae justo. Nam eget tellus. Etiam convallis, est eu lobortis mattis, lectus tellus tempus felis, a ultricies erat ipsum at metus.
 
-h3. Litora Sociis
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi et risus. Aliquam nisl. Nulla facilisi. Cras accumsan vestibulum ante. Vestibulum sed tortor. Praesent tempus fringilla elit. Ut elit diam, sagittis in, nonummy in, gravida non, nunc. Ut orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nam egestas, orci eu imperdiet malesuada, nisl purus fringilla odio, quis commodo est orci vitae justo. Aliquam placerat odio tincidunt nulla. Cras in libero. Aenean rutrum, magna non tristique posuere, erat odio eleifend nisl, non convallis est tortor blandit ligula. Nulla id augue.
+This is the first post in my brand new Github blog site. I've tried blogging before, but I've never been able to stick to it. Hopefully now that my site is a little experiment in and of itself, I'll keep posting.
 
-bq. Nullam mattis, odio ut tempus facilisis, metus nisl facilisis metus, auctor consectetuer felis ligula nec mauris. Vestibulum odio erat, fermentum at, commodo vitae, ultrices et, urna. Mauris vulputate, mi pulvinar sagittis condimentum, sem nulla aliquam velit, sed imperdiet mi purus eu magna. Nulla varius metus ut eros. Aenean aliquet magna eget orci. Class aptent taciti sociosqu ad litora.
+I want to thank the people behind Github for giving me (and everybody else) this space to blog about the stuff I'm currently hacking on. Ever since I joined Github, which was right around the time it left private beta, it's been an amazing resource for me. I've had the almost voyeuristic opportunity to watch the development process of some pretty amazing projects. As a newcomer to the world of open source development, It's been amazing to learn by watching the pro's.
 
-Vivamus euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse vel nibh ut turpis dictum sagittis. Aliquam vel velit a elit auctor sollicitudin. Nam vel dui vel neque lacinia pretium. Quisque nunc erat, venenatis id, volutpat ut, scelerisque sed, diam. Mauris ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec mattis. Morbi dignissim sollicitudin libero. Nulla lorem.
+I plan to use this space to talk about the things I'm currently learning, random ideas I have in the middle of the night, and whatever else I feel like writing about. I'm not going to assume that anybody (other than me) is actually going to read this blog; but if you do somehow stumble upon it, thanks for reading!
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
