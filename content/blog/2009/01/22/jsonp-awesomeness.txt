@@ -21,7 +21,7 @@ So how can I put up-to-the-minute, dynamic feeds into a static HTML file? Some k
 
 I finally remembered glossing over a little blurb about cross domain JSON requests when I was reading the "jQuery":http://www.jquery.com documentation a while ago. Turns out I can access JSON data from my web service of choice if I put the request into a script tag and specify a callback function on my page to munge the resulting output. Even better, jQuery completely automates this whole process so I don't have to bother with DOM scripting to insert a @script@ tag. Cheggit out:
 
-<script src="http://gist.github.com/50890.js"></script>
+<script src="http://gist.github.com/50890.js" type="text/javascript"></script>
 
 Deceptively simple, this bit of Javascript automatically inserts a new @script@ tag when the page loads, then uses the specified callback to process the JSON object returned. You'll notice that I specified the same callback in a couple places. It's kind of confusing, but I can't get it to work any other way. You need to pass the callback function name to the web service so that the object it returns includes a call to that function. This snippet assumes that you've already defined a function called @twitterFeed@ to process the JSON output. If you look in this page's source code, you'll see mine:
 

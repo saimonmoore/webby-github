@@ -21,6 +21,9 @@ filter:    erb
    <!-- Homepage CSS -->
 	<link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
 	
+	<!-- Feed autodiscover link -->
+	<link rel="alternate" type="application/atom+xml" href="http://mikedamage.github.com/blog.xml">
+	
 	<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -49,12 +52,16 @@ filter:    erb
 		
 		function twitterFeed(feed) {
 			for (var i=0; i<feed.length; i++) {
-				$('#twitter-status ul').append('<li class="tweet">'
-					+ feed[i].text
-					+ '<br/><em>'
-					+ jQuery.timeago(parseDate(feed[i].created_at))
-					+ '</em>'
-					+ '</li>');
+				$('#twitter-status ul')
+					.hide()
+					.append('<li class="tweet">'
+						+ feed[i].text
+						+ '<br/><em>'
+						+ jQuery.timeago(parseDate(feed[i].created_at))
+						+ '</em>'
+						+ '</li>')
+					.show('fast');
+				$("#twitter-status .loading").hide('fast');
 			}
 		}
 		
@@ -122,21 +129,21 @@ filter:    erb
 			<div id="twitter-status">
 				<h2>
 					<a href="http://twitter.com/mikedamage" target="_blank" class="noicon">
-						<img src="/images/icons/twitter_blue.png"/>
+						<img src="/images/icons/twitter_blue.png" alt="Follow me on Twitter"/>
 					</a> 
 					Twitter Status 
 				</h2>
-				
+				<img src="images/loading_2.gif" width="16" height="16" class="loading" alt="Loading..." />
 				<ul></ul>
 			</div>
 			<div id="github-commits">
 				<h2>
 					<a href="http://github.com/mikedamage" target="_blank" class="noicon">
-						<img src="/images/icons/github_icon.png"/>
+						<img src="/images/icons/github_icon.png" alt="Follow me on Github"/>
 					</a> 
 					Recently on GitHub&hellip;
 				</h2>
-				<img src="images/loading_2.gif" width="16" height="16" class="loading" />
+				<img src="images/loading_2.gif" width="16" height="16" class="loading" alt="Loading..." />
 				<ul>
 				</ul>
 			</div>
@@ -144,11 +151,11 @@ filter:    erb
 			<div id="delicious-bookmarks">
 				<h2>
 					<a href="http://del.icio.us/mikedamage" target="_blank" class="noicon">
-						<img src="/images/icons/delicious_icon.png"/>
+						<img src="/images/icons/delicious_icon.png" alt="Follow me on Del.icio.us"/>
 					</a> 
 					Tasty new bookmarks
 				</h2>
-				<img src="images/loading_2.gif" width="16" height="16" class="loading" />
+				<img src="images/loading_2.gif" width="16" height="16" class="loading" alt="Loading..." />
 				<ul>
 				</ul>
 			</div>
