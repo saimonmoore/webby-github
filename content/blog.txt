@@ -1,7 +1,7 @@
 ---
 title:     Mike Green on Github
 subtitle:  Stuff about Ruby, Javascript, web development, Github, and more
-site:      http://mikedamage.github.com
+site:      mikedamage.github.com
 author:    Mike Green
 email:     mike.is.green@gmail.com
 extension: xml
