@@ -33,7 +33,6 @@ h3. What if (insert service here) doesn't support JSON output?
 
 I ran across two instances where I either didn't like the JSON a web service gave me, or said service didn't output JSON at all. For these cases I used "Yahoo! Pipes":http://pipes.yahoo.com to grab my Github and Del.icio.us activity as RSS feeds, truncated their length to what I wanted, and used Pipes to give me just the JSON I needed. Check the source code of this page for more info on that. I'll be writing a post about Pipes soon, as well.
 
-
 <div id="disqus_thread">
 </div>
 <script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>

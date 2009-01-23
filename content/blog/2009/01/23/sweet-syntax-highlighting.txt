@@ -1,0 +1,39 @@
+--- 
+title:      Sweet Syntax Highlighting
+created_at: 2009-01-23 11:40:52.081358 -05:00
+blog_post:  true
+tags:
+  - tag 1
+  - tag 2
+  - et cetera
+filter:
+  - erb
+  - textile
+--- 
+
+h2(post_title). Sweet Syntax Highlighting
+
+I like the idea of using Github "gists":http://gist.github.com to embed code examples in my blog. This way the code lives up on the Github servers and I can revise it independently of the blog post it's included in. It makes it much easier to share code snippets. But I do find their syntax highlighting a little lacking...
+
+So this post is a little experiment in using the "Ultraviolet":http://ultraviolet.rubyforge.org syntax highlighting gem instead. Ultraviolet, in conjunction with "Textpow":http://textpow.rubyforge.org, lets me use my themes from "TextMate":http://macromates.com, which is totally my editor of choice when I'm on my Mac. _(Everywhere else it's the venerable old "Vim":http://www.vim.org, which deserves its own blog post)_.
+
+So here's a code snippet highlighted using the _Sunburst_ theme from TextMate:
+
+<% uv(:lang => 'ruby', :line_numbers => true, :theme => 'sunburst') do -%>
+def foo(arg)
+  puts "You entered #{arg}."
+  puts "That's '#{arg.reverse}' backwards."
+end
+<% end %>
+
+As you can see, it's a whole lot more vibrant than Github's Gist highlighting, but it's also not as versatile. And, if I want to include line numbers, I can't have them appear in a separate list or table column so that they don't get selected when someone copies the snippet to their clipboard. It's a tradeoff, a classic case of fashion versus function.
+
+Now if there were a way for me to get the best of both worlds, that would be interesting. Maybe I could pull in the content of a Github Gist with some kind of Webby helper method, then run it through Ultraviolet. Hmmm... the wheels are turning... If I find a good way to do this I'll be sure to post it, so stay tuned!
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
