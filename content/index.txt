@@ -28,7 +28,7 @@ filter:
 	-%>
 	<div class="blog_post">
 	
-		<%= dateline(post) %><a href="<%= post.url %>" class="post_title"><%= post.title %></a>
+		<%= dateline(post) %><a href="<%= post.url %>" class="post_title"><%= post.title %></a> 
 		
 	</div>
 	<% end -%>

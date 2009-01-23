@@ -86,9 +86,7 @@ filter:    erb
 			});
 			
 			
-			$("a[href^='http://']")
-				.attr('target', '_blank')
-				.addClass("external_link");
+			$("a[href^='http://']").attr('target', '_blank')
 			$("a[href$='.pdf']").addClass("pdf_link").removeClass("external_link");
 			$("a[href^='mailto:']").addClass("mailto_link").removeClass("external_link");
 			$("a[href$='.doc']").addClass("doc_link").removeClass("external_link");

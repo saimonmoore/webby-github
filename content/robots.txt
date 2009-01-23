@@ -1,0 +1,8 @@
+---
+title: robots
+extension: txt
+layout: nil
+---
+
+User-agent: *
+Disallow: /js/

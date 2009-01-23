@@ -1,0 +1,43 @@
+--- 
+title:      JSONP Awesomeness
+created_at: 2009-01-22 23:37:02.646564 -05:00
+blog_post:  true
+tags:
+  - tag 1
+  - tag 2
+  - et cetera
+filter:
+  - erb
+  - textile
+--- 
+
+h2(post_title). JSONP Awesomeness
+
+When I was creating the templates for this blog, I wanted to be able to include the latest updates from my Twitter, Github, and Del.icio.us accounts. On a dynamic blog, this would be a pretty simple matter. I could slap together some PHP functions to pull the data from their public APIs on the server side and render it in the user's browser. But I'm not using a server-side blogging platform, I'm using "Webby":http://webby.rubyforge.org.
+
+h3. Enter JSONP
+
+So how can I put up-to-the-minute, dynamic feeds into a static HTML file? Some kind of AJAX magic initially came to mind, but I quickly remembered that browsers don't take too kindly to Javascript trying to make cross-domain requests. If I wanted to use straight AJAX, I'd have to be able to run a script on the server to do the actual communication with the web services. I haven't tried doing this on Github yet, but I'm pretty sure it's a no-no.
+
+I finally remembered glossing over a little blurb about cross domain JSON requests when I was reading the "jQuery":http://www.jquery.com documentation a while ago. Turns out I can access JSON data from my web service of choice if I put the request into a script tag and specify a callback function on my page to munge the resulting output. Even better, jQuery completely automates this whole process so I don't have to bother with DOM scripting to insert a @script@ tag. Cheggit out:
+
+<script src="http://gist.github.com/50890.js"></script>
+
+Deceptively simple, this bit of Javascript automatically inserts a new @script@ tag when the page loads, then uses the specified callback to process the JSON object returned. You'll notice that I specified the same callback in a couple places. It's kind of confusing, but I can't get it to work any other way. You need to pass the callback function name to the web service so that the object it returns includes a call to that function. This snippet assumes that you've already defined a function called @twitterFeed@ to process the JSON output. If you look in this page's source code, you'll see mine:
+
+<script src="http://gist.github.com/50897.js"></script>
+
+There's a little bit of jQuery magic going on around where it says @parseDate(...@, but I'm saving that for another blog post where I'll extoll the virtues of the "jQuery Time Ago":http://timeago.yarp.com/ plugin. Basically @twitterFeed@ takes a JSON array, iterates through its contents and injects HTML into an existing @ul@ element in the sidebar.
+
+h3. What if (insert service here) doesn't support JSON output?
+
+I ran across two instances where I either didn't like the JSON a web service gave me, or said service didn't output JSON at all. For these cases I used "Yahoo! Pipes":http://pipes.yahoo.com to grab my Github and Del.icio.us activity as RSS feeds, truncated their length to what I wanted, and used Pipes to give me just the JSON I needed. Check the source code of this page for more info on that. I'll be writing a post about Pipes soon, as well.
+
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

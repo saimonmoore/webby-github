@@ -42,6 +42,10 @@ h1
   #add_this
     :margin 10px 0
     :text-align right
+  .gist-meta
+    a
+      :background none
+      :padding 0
 
 #sidebar
   h2
