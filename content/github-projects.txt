@@ -1,0 +1,14 @@
+---
+title:      Github Projects
+created_at: 2009-01-23 12:30:36.467455 -05:00
+filter:
+  - erb
+  - textile
+---
+
+<%= breadcrumbs(@page) %>
+
+h2(title). Github Projects
+
+Here's a list of the stuff I'm hacking on at the moment:
+

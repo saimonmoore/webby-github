@@ -28,65 +28,24 @@ filter:    erb
 	
 	<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		function gitFeed(feed) {
-			var tmp = '';
-			for (var i=0; i<feed.value.items.length; i++) {
-				var title = feed.value.items[i].title.replace('mikedamage', 'Mike');
-				tmp += '<li>'+'<a href="'+feed.value.items[i].link+'" target="_blank">'
-					+ title
-					+ '</a> <br/><em>'+jQuery.timeago(feed.value.items[i].pubDate)+"</em></li>\n";
-			}
-			jQuery("#github-commits .loading").hide('fast');
-			jQuery("#github-commits ul").append(tmp);
-		}
-		
-		function deliciousFeed(feed) {
-			var tmp = '';
-			for (var i=0; i<feed.value.items.length; i++) {
-				tmp += '<li><a href="'+feed.value.items[i].link+'" target="_blank">'
-				+ feed.value.items[i].title
-				+'</a><br/><em>'+jQuery.timeago(parseDate(feed.value.items[i].pubDate))+"</em></li>\n";
-			}
-			jQuery("#delicious-bookmarks .loading").hide('fast');
-			jQuery("#delicious-bookmarks ul").append(tmp);
-		}
-		
-		function twitterFeed(feed) {
-			for (var i=0; i<feed.length; i++) {
-				$('#twitter-status ul')
-					.hide()
-					.append('<li class="tweet">'
-						+ feed[i].text
-						+ '<br/><em>'
-						+ jQuery.timeago(parseDate(feed[i].created_at))
-						+ '</em>'
-						+ '</li>')
-					.show('fast');
-				$("#twitter-status .loading").hide('fast');
-			}
-		}
-		
-		function parseDate(date) {
-			var dateArray = date.split(" ");
-			var dateString = dateArray[1]+" "+dateArray[2]+", "+dateArray[5]+" "+dateArray[3]+" "+dateArray[4];
-			return dateString;
-		}
-	</script>
+	<script src="/js/jsonp_callbacks.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			// $.getScript("http://pipes.yahoo.com/mikedamage/github_activity?run&_render=json&_callback=gitFeed");
-			// $.getScript("http://pipes.yahoo.com/mikedamage/recent_bookmarks?run&_render=json&_callback=deliciousFeed");
+			// Recent GitHub activity JSON feed
 			$.ajax({
 				dataType: 'jsonp',
 				url: 'http://pipes.yahoo.com/mikedamage/github_activity?run&_render=json&_callback=gitFeed',
 				jsonp: 'gitFeed'
 			});
+			
+			// Del.icio.us bookmarks JSON feed
 			$.ajax({
 				dataType: 'jsonp',
 				url: 'http://pipes.yahoo.com/mikedamage/recent_bookmarks?run&_render=json&_callback=deliciousFeed',
 				jsonp: 'deliciousFeed'
 			});
+			
+			// Twitter JSON feed
 			$.ajax({
 				dataType: 'jsonp',
 				data: { count: 3, callback: 'twitterFeed' },
@@ -94,6 +53,20 @@ filter:    erb
 				jsonp: 'twitterFeed'
 			});
 			
+			// LastFM JSON feed
+			$.ajax({
+				dataType: 'jsonp',
+				data: {
+					method: 'user.getrecenttracks',
+					user: 'mikedamage85',
+					limit: 5,
+					api_key: 'e618d5ae7523b3c730fb3dcff9d80e23',
+					format: 'json',
+					callback: 'lastFmFeed'
+				},
+				url: 'http://ws.audioscrobbler.com/2.0/',
+				jsonp: 'lastFmFeed'
+			});
 			
 			$("a[href^='http://']").attr('target', '_blank')
 			$("a[href$='.pdf']").addClass("pdf_link").removeClass("external_link");
