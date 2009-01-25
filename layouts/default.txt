@@ -7,18 +7,27 @@ filter:    erb
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title><%= @page.title %></title>
-   <meta name="author" content="<%= @page.author %>" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Mike Green // Freelance Web Afficionado // <%= @page.title -%></title>
+	<meta name="author" content="<%= @page.author -%>" />
+	<% if @page.description -%>
+	<meta name="description" content="<%= @page.description -%>" />
+	<% end -%>
+	<% if @page.keywords -%>
+	<meta name="keywords" content="<%= @page.keywords -%>" />
+	<% end -%>
 
    <!--- Blueprint CSS Framework -->
 	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
-
-   <!-- CodeRay syntax highlighting CSS -->
-	<!-- <link rel="stylesheet" href="/css/coderay.css" type="text/css" /> -->
 	
-	<!-- Ultraviolet Twilight Theme -->
+	<!-- jQuery UI Stylesheets
+	<link rel="stylesheet" href="/css/ui.core.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="/css/ui.theme.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="/css/ui.allplugins.css" type="text/css" media="screen, projection" />
+	-->
+	
+	<!-- Ultraviolet Sunburst Theme -->
 	<link rel="stylesheet" href="/css/uv/css/sunburst.css" type="text/css" />
    <!-- Homepage CSS -->
 	<link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
@@ -27,6 +36,7 @@ filter:    erb
 	<link rel="alternate" type="application/atom+xml" href="http://mikedamage.github.com/blog.xml">
 	
 	<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="/js/jquery.ui.all.js" type="text/javascript" charset="utf-8"></script> -->
 	<script src="/js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/jsonp_callbacks.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -54,19 +64,19 @@ filter:    erb
 			});
 			
 			// LastFM JSON feed
-			$.ajax({
-				dataType: 'jsonp',
-				data: {
-					method: 'user.getrecenttracks',
-					user: 'mikedamage85',
-					limit: 5,
-					api_key: 'e618d5ae7523b3c730fb3dcff9d80e23',
-					format: 'json',
-					callback: 'lastFmFeed'
-				},
-				url: 'http://ws.audioscrobbler.com/2.0/',
-				jsonp: 'lastFmFeed'
-			});
+			// $.ajax({
+			// 			dataType: 'jsonp',
+			// 			data: {
+			// 				method: 'user.getrecenttracks',
+			// 				user: 'mikedamage85',
+			// 				limit: 5,
+			// 				api_key: 'e618d5ae7523b3c730fb3dcff9d80e23',
+			// 				format: 'json',
+			// 				callback: 'lastFmFeed'
+			// 			},
+			// 			url: 'http://ws.audioscrobbler.com/2.0/',
+			// 			jsonp: 'lastFmFeed'
+			// 		});
 			
 			$("a[href^='http://']").attr('target', '_blank')
 			$("a[href$='.pdf']").addClass("pdf_link").removeClass("external_link");

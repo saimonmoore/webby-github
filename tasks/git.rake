@@ -13,7 +13,7 @@ namespace :git do
 	end
 	
 	desc "pushes to remote dev repository"
-	task :push => [:commit] do
+	task :push do
 		repo = Git.open(Dir.pwd)
 		repo.chdir do
 			repo.push('origin', 'master')

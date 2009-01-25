@@ -8,6 +8,7 @@ layout:    nil   # no layout
 !background = #F0FCFC
 !header = #58C748
 !code = #CC3333
+!dark_green = #23481C
 
 body
   :color= !text
@@ -48,6 +49,27 @@ h1
       :padding 0
   .UltraViolet
     :line-height 15px
+  .breadcrumbs
+    :list-style none
+    :padding-left 0
+    :margin-left 0
+    :padding-top 8px
+    :font-weight bold
+    :font-size 14px
+    li
+      :float left
+      :padding-left 0
+      :text-indent 0
+      :margin-left 0
+      :margin-right 6px
+      .angle_brackets
+        :margin-left 6px
+      a
+        :color= !dark_green
+      a:hover
+        :text-decoration none
+    li.last
+      :font-weight bold
 
 #sidebar
   h2

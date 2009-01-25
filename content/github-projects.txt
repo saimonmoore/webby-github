@@ -12,3 +12,5 @@ h2(title). Github Projects
 
 Here's a list of the stuff I'm hacking on at the moment:
 
+* Folio
+
