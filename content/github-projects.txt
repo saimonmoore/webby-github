@@ -1,6 +1,10 @@
 ---
 title:      Github Projects
 created_at: 2009-01-23 12:30:36.467455 -05:00
+keywords: github, blog, mikedamage, programming, ruby, javascript, rails, rubyonrails
+description: Github projects I'm currently working on or watching
+navigation_item: true
+extension: html
 filter:
   - erb
   - textile
