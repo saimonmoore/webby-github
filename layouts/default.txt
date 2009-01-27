@@ -114,7 +114,7 @@ filter:    erb
 			<div id="twitter-status">
 				<h2>
 					<a href="http://twitter.com/mikedamage" target="_blank" class="noicon">
-						<img src="/images/icons/twitter_blue.png" alt="Follow me on Twitter"/>
+						<img src="/images/icons/twitter_round.png" alt="Follow me on Twitter"/>
 					</a> 
 					Twitter Status 
 				</h2>

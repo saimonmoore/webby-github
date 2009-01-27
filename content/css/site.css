@@ -6,18 +6,20 @@ layout:    nil   # no layout
 
 !text = #101D0C
 !background = #F0FCFC
-!header = #58C748
+!header = #8FFF4E
 !code = #CC3333
 !dark_green = #23481C
+!white = #FFFFFF
 
 body
   :color= !text
-  :background= !background + " url(../images/splat_top_left.png) top left no-repeat"
+  :background= !background + " url(../images/wallpaper_top.jpg) top left repeat-x"
 
 h1
   :letter-spacing -2px
   :font-size 36px !important
   :font-weight normal
+  :color= !white
 
 h3, h4
   :font-weight normal
