@@ -1,3 +1,10 @@
+---
+extension: js
+layout: nil
+filter:
+  - jsmin
+---
+
 /*
  * timeago: a jQuery plugin, version: 0.6.2 (10/14/2008)
  * @requires jQuery v1.2 or later

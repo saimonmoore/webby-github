@@ -1,3 +1,10 @@
+---
+extension: js
+layout: nil
+filter:
+  - jsmin
+---
+ 
 /*
  * jQuery UI 1.6rc5
  *

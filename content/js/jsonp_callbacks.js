@@ -1,3 +1,10 @@
+---
+extension: js
+layout: nil
+filter:
+  - jsmin
+---
+
 function gitFeed(feed) {
 	var tmp = '';
 	for (var i=0; i<feed.value.items.length; i++) {

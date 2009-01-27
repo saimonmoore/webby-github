@@ -1,0 +1,108 @@
+--- 
+title:      Creating a Webby Filter
+created_at: 2009-01-26 13:43:37.034064 -05:00
+layout: default
+blog_post:  true
+navigation_item: false
+tags:
+  - webby
+  - ruby
+  - programming
+  - javascript
+filter:
+  - erb
+  - textile
+--- 
+
+h2(post_title). Creating a Webby Filter
+
+Many of this blog's cooler features are powered by Javascript. I'm a huge fan and avid user of "jQuery":http://jquery.com, and I'm in the process of integrating jQuery's _beautiful_ "UI Framework":http://ui.jquery.com into my "Github Projects":http://mikedamage.github.com/github-projects.html page. I like to use the uncompressed and un-minified versions of these libraries so I can get a better idea of what's going on in there. But I also know that every Javascript file I embed increases the load time of the page by a few milliseconds. I know my page isn't going to be winning any performance or accessibility awards, but I don't want it to take forever to load.
+
+At the same time, I've been browsing through Webby's source code and "RDoc":http://webby.rubyforge.org/rdoc/ documentation, trying to learn more about this awesome platform. When I noticed Webby's @tidy@ filter, which pretties up your HTML markup, it dawned on me that I could create a filter of my own to solve the Javascript bloat problem -- a *Javascript Minifier!*
+
+I decided to document my learning process:
+
+h3. Doing my Homework
+
+For starters, I cloned the "Webby Development Repository":http://github.com/TwP/webby/tree/master to my @Projects@ directory like so:
+
+<pre>
+	$ cd ~/Projects
+	$ git clone git://github.com/TwP/webby.git
+</pre>
+
+Webby includes quite a few filters of its own, located in the @lib/filters@ directory:
+
+<pre>
+	$ cd webby/lib/filters
+	$ ls
+	basepath.rb   haml.rb       maruku.rb     sass.rb       textile.rb    wiki_words.rb
+	erb.rb        markdown.rb   outline.rb    slides.rb     tidy.rb
+</pre>
+
+I took a look at a few of these filters, starting with the @tidy@ filter. I thought the tidy filter would be the most similar to my brainchild JS Minifier filter, but it turns out that Tidy is one of the more complex filters in this directory. The @textile@ filter is actually much more in line with what I need to do.
+
+Most of the work of minifying Javascript has already been done for me. The "jsmin":http://github.com/rgrove/jsmin/tree/master Ruby gem, by Ryan Grove, is an Ruby port of Douglas Crockford's original @jsmin.c@ library. It's a dead simple library with one method: @JSMin.minify@. Similarly, the Webby @textile@ filter uses "RedCloth's":http://whytheluckystiff.net/ruby/redcloth/ @to_html@ method on any input it receives.
+
+h3. Writing the Filter
+
+Webby's @textile@ filter, in its entirety is:
+
+<% uv(:lang => 'ruby', :line_numbers => true, :theme => 'sunburst') do -%>
+# If RedCloth is installed, then configure the textile filter
+if try_require('redcloth', 'RedCloth')
+
+  Webby::Filters.register :textile do |input|
+    RedCloth.new(input, %w(no_span_caps)).to_html
+  end
+
+# Otherwise raise an error if the user tries to use textile
+else
+  Webby::Filters.register :textile do |input|
+    raise Webby::Error, "'RedCloth' must be installed to use the textile filter"
+  end
+end
+
+# EOF
+<% end -%>
+
+This is so easy I almost wish I hadn't looked at the source code. I don't have to do any thinking of my own to create a filter to minify my Javascript -- all I need to do is substitute the references to @RedCloth@ with @JSMin@. Kind of anticlimactic. Here's the source code for my completely un-original, Javascript minifying filter...
+
+<% uv(:lang => 'ruby', :line_numbers => true, :theme => 'sunburst') do -%>
+# See if we have the JSMin gem installed
+if try_require('jsmin', 'JSMin')
+  Webby::Filters.register :jsmin do |input|
+    JSMin.minify(input)
+  end
+else
+  Webby::Filters.register :jsmin do |input|
+    raise Webby::Error, "The 'JSMin' gem must be installed to use this filter"
+  end
+end
+<% end -%>
+
+This lets me use the big, bloated versions of jQuery and jQuery UI so I can see what I'm reading if I ever need to take a gander at the source code, but it will minify them when I call Webby's @build@ task for quicker load times. Win win, baby.
+
+You would use this filter by specifying it in your javascript files' YAML headers like so:
+
+<% uv(:lang => 'yaml', :line_numbers => true, :theme => 'sunburst') do -%>
+- - -
+extension: js
+layout: nil
+filter:
+  - jsmin
+- - -
+
+javascript goes here...
+<% end -%>
+
+_Note: don't actually put spaces between those dashes, I had to do that so Webby wouldn't think I was including a *real* YAML section._
+
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

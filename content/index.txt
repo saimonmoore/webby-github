@@ -8,7 +8,7 @@ extension: html
 filter:
   - erb
 ---
-<%= navigation_links(@page) %>
+<% links = @pages.find(:all, :navigation_item => true, :sort_by => :created_at) %>
 
 <h2 class="page_title">Welcome</h2>
 
