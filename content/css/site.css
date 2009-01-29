@@ -4,22 +4,22 @@ filter:    sass
 layout:    nil   # no layout
 ---
 
-!text = #101D0C
+!text = #224
 !background = #F0FCFC
-!header = #8FFF4E
+!header = #000
 !code = #CC3333
 !dark_green = #23481C
 !white = #FFFFFF
 
 body
   :color= !text
-  :background= !background + " url(../images/wallpaper_top.jpg) top left repeat-x"
+  :background= !background + " url(../images/wallpaper_top2.jpg) top left repeat-x"
 
 h1
   :letter-spacing -2px
   :font-size 36px !important
   :font-weight normal
-  :color= !white
+  :color= !text
 
 h3, h4
   :font-weight normal
@@ -32,6 +32,7 @@ h1
   a.sitename
     :color= !header + " !important"
     :text-decoration none !important
+    :font-weight bold
 
 #header
   :border-bottom= !text + " dotted 1px"

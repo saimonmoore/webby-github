@@ -14,7 +14,26 @@ filter:
 
 h2(title). Github Projects
 
-Here's a list of the stuff I'm hacking on at the moment:
+This is where I keep a list of my current Github projects.
 
-* Folio
+<div id="projects">
+	<ul>
+		<li><a href="#folio">Folio</a></li>
+		<li><a href="#cal_neva">CalNeva CMS</a></li>
+		<li><a href="#random_gem">Random.org Gem</a></li>
+		<li><a href="#todo_txt">Ruby Todo.txt</a></li>
+	</ul>
+	<div id="folio">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	</div>
+	<div id="cal_neva">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	</div>
+	<div id="random_gem">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	</div>
+	<div id="todo_txt">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	</div>
+</div>
 

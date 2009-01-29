@@ -21,11 +21,8 @@ filter:    erb
 	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
 	
-	<!-- jQuery UI Stylesheets
-	<link rel="stylesheet" href="/css/ui.core.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="/css/ui.theme.css" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="/css/ui.allplugins.css" type="text/css" media="screen, projection" />
-	-->
+	<!-- jQuery UI Stylesheets -->
+	<link rel="stylesheet" href="/css/ui.all.css" type="text/css" media="screen, projection" />
 	
 	<!-- Ultraviolet Sunburst Theme -->
 	<link rel="stylesheet" href="/css/uv/css/sunburst.css" type="text/css" />
@@ -36,7 +33,7 @@ filter:    erb
 	<link rel="alternate" type="application/atom+xml" href="http://mikedamage.github.com/blog.xml">
 	
 	<script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<!-- <script src="/js/jquery.ui.all.js" type="text/javascript" charset="utf-8"></script> -->
+	<script src="/js/jquery.ui.all.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/jquery.timeago.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/jsonp_callbacks.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -78,6 +75,8 @@ filter:    erb
 			// 			jsonp: 'lastFmFeed'
 			// 		});
 			
+			$("#projects").tabs();
+			
 			$("a[href^='http://']").attr('target', '_blank')
 			$("a[href$='.pdf']").addClass("pdf_link").removeClass("external_link");
 			$("a[href^='mailto:']").addClass("mailto_link").removeClass("external_link");
@@ -96,7 +95,7 @@ filter:    erb
 	<div class="container">
 		<div id="header" class="span-24 last">
 			<h1><a href="/index.html" class="sitename">Mike Green</a> Freelance Web Afficionado</h1>
-			<span>a 23 year old developer, living and working in beautiful, suburban New Jersey</span>
+			<span>a blog about web development, javascript, css, ruby, nicotine, and energy drinks</span>
 		</div>
 		
 		<div id="mainbody" class="span-16">
