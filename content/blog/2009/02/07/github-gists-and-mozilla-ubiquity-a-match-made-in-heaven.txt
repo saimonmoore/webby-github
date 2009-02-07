@@ -16,13 +16,15 @@ filter:
 
 h2(post_title). Github Gists and Mozilla Ubiquity: A Match Made in Heaven
 
-Lately I've been completely stressed out, working my ass off on the very first project I've ever been trusted to manage -- the website for the "Educational Services Commission of Morris County":http://esc-server.escmorris.com. It's an "Expression Engine":http://www.expressionengine.com site that, once launched, will be full of documents and frequently updated. I'll save all my gripes about Expression Engine for another post. It seemed like the best solution at proposal time, and it's a fine CMS. But it just isn't my style. Anyway, that's what I've been doing for the last couple weeks _instead_ of working on my blog.
+Lately I've been relying more and more on "Github Gists":http://gist.github.com as my pasteboard of choice. I used it to create a quick tutorial on "adding link icons with jQuery":http://fifthroomcreative.com/mike/js_link_detection/ for a coworker. That way I could use syntax highlighting in my code examples and give him an easy way to copy and paste them into his own code.
 
-At the same time, I've been relying more and more on "Github Gists":http://gist.github.com as my pasteboard of choice. I used it to create a quick tutorial on "adding link icons with jQuery":http://fifthroomcreative.com/mike/js_link_detection/ for a coworker. That way I could use syntax highlighting in my code examples and give him an easy way to copy and paste them into his own code.
+In order to make my life a little easier I created several scripts to past to and copy from Gists. I created a couple actions for "Quicksilver":http://docs.blacktree.com/quicksilver/what_is_quicksilver in Applescript, and a couple more convenient actions for "Mozilla Ubiquity":https://wiki.mozilla.org/Labs/Ubiquity in Javascript. Let me first say that I love Quicksilver. I'm a keyboard geek, so I love being able to script my own workflows with it. That said, I *hate* Applescript. It's just a pain in the ass sometimes, like when I want to parse _anything other than applescript_ with it, without resorting to @do shell script...@. So I really like the idea of a web-based Quicksilver work-alike that I can extend with Javascript.
 
-In order to make my life a little easier I created several scripts to past to and copy from Gists. I created a couple actions for "Quicksilver":http://docs.blacktree.com/quicksilver/what_is_quicksilver in Applescript, and a couple more convenient actions for "Mozilla Ubiquity":https://wiki.mozilla.org/Labs/Ubiquity in Javascript.
+The more I work with Javascript, especially jQuery, the more I like it. It's a pretty neat language, and although it might not be as clean or pretty as Ruby, its look and feel are slowly growing on me. I believe that if I'm going to develop web applications that are cool enough for people to actually want to use, I should invest the time and effort and learn Javascript. When in Rome, and all that jazz. So I like to take any opportunity I can to practice my JS coding skillz.
 
-Here are my Ubiquity actions -- there are 3 in all (Get Gist by ID, Store Github API credentials, and Create Gist from Selection):
+If you're not hip to the buzz about Ubiquity, it's a Firefox extension that pops up a little translucent window (actually a DOM object, not really a window) into which you type commands. It gives you suggestions and auto-completion, and lets you search Google and Wikipedia, perform calculations, and a whole lot more right out of the box. But the best part is its Javascript plugin API module, @CmdUtils@. @CmdUtils@ contains functions that make creating new Ubiquity commands ultra easy. And it goes one step further, letting you share those commands with other users and subscribe to theirs, automatically downloading updates almost like an RSS feed. It's just so effing cool.
+
+So anyway, I think Github Gists is the perfect target for a few Ubiquity actions -- there are 3 in all (Get Gist by ID, Store Github API credentials, and Create Gist from Selection). The one that stores your credentials is necessary because I use the Github Gists API via jQuery, which Ubiquity is built on. See, that's another cool thing about Ubiquity. *It lets you make GET/POST requests to any domain you want.* Obviously, this means that you should pay attention to what your commands do. You don't want any nefarious characters hijacking your confidential information. But I wouldn't do that to you. WTF would I want your Github API token anyway? The API credentials action uses a Ubiquity function to securely store your API token in Ubiquity's keychain on the client side, and the New Gist option accesses your API token by searching the keychain for the username you give it.
 
 h3. Get Gist by ID ("Subscribe to Command":http://gist.github.com/59759)
 
@@ -74,6 +76,36 @@ CmdUtils.CreateCommand({
 });
 <% end -%>
 
+h3. Create a New Gist from Selected Text ("Subscribe to Command":http://gist.github.com/59780)
+
+<% uv(:lang => 'javascript', :line_numbers => true, :theme => 'sunburst') do -%>
+// Create a new Github Gist from selection
+CmdUtils.CreateCommand({
+  name: "gist",
+  icon: "http://gist.github.com/favicon.ico",
+  author: {name: "Mike Green", email: "mike.is.green@gmail.com", url: "http://mikedamage.github.com"},
+  description: "Creates a new Github Gist from the currently selected text. IMPORTANT: You must give Firefox your Github API token by running github-auth before using this command.",
+  takes: {"username": noun_arb_text},
+  preview: function(pblock, user) {
+    var template = "<b>New gist by ${user}:</b><p><code>${gist}</code></p>";
+    var selection = CmdUtils.getSelection();
+    pblock.innerHTML = CmdUtils.renderTemplate(template, {user: user.text, gist: selection});
+  },
+  execute: function(user) {
+    var url = "http://gist.github.com/api/v1/json/new";
+    var auth = CmdUtils.retrieveLogins(user.text);
+    var selection = CmdUtils.getSelection();
+    var data = { login: auth.username, token: auth.password, 'files[gist.txt]': selection };
+    jQuery.post(url, data, function(json) {
+      var urlTemplate = "http://gist.github.com/${repo}";
+      var repo = json.gists[0].repo;
+      var repoURL = CmdUtils.renderTemplate(urlTemplate, {repo: repo});
+      CmdUtils.copyToClipboard(repoURL);
+      displayMessage("Successfully created new gist at " + repoURL);
+    }, "json");
+}
+});
+<% end -%>
 
 <div id="disqus_thread">
 </div>
