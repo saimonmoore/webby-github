@@ -52,6 +52,8 @@ h1
       :padding 0
   .UltraViolet
     :line-height 15px
+    pre
+      :overflow auto
   .breadcrumbs
     :list-style none
     :padding-left 0

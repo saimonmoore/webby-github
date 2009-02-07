@@ -1,0 +1,84 @@
+--- 
+title:      Github Gists and Mozilla Ubiquity - A Match Made in Heaven
+created_at: 2009-02-07 01:10:46.366189 -05:00
+layout: default
+blog_post:  true
+navigation_item: false
+tags:
+  - github
+  - firefox
+  - plugins
+  - javascript
+filter:
+  - erb
+  - textile
+--- 
+
+h2(post_title). Github Gists and Mozilla Ubiquity: A Match Made in Heaven
+
+Lately I've been completely stressed out, working my ass off on the very first project I've ever been trusted to manage -- the website for the "Educational Services Commission of Morris County":http://esc-server.escmorris.com. It's an "Expression Engine":http://www.expressionengine.com site that, once launched, will be full of documents and frequently updated. I'll save all my gripes about Expression Engine for another post. It seemed like the best solution at proposal time, and it's a fine CMS. But it just isn't my style. Anyway, that's what I've been doing for the last couple weeks _instead_ of working on my blog.
+
+At the same time, I've been relying more and more on "Github Gists":http://gist.github.com as my pasteboard of choice. I used it to create a quick tutorial on "adding link icons with jQuery":http://fifthroomcreative.com/mike/js_link_detection/ for a coworker. That way I could use syntax highlighting in my code examples and give him an easy way to copy and paste them into his own code.
+
+In order to make my life a little easier I created several scripts to past to and copy from Gists. I created a couple actions for "Quicksilver":http://docs.blacktree.com/quicksilver/what_is_quicksilver in Applescript, and a couple more convenient actions for "Mozilla Ubiquity":https://wiki.mozilla.org/Labs/Ubiquity in Javascript.
+
+Here are my Ubiquity actions -- there are 3 in all (Get Gist by ID, Store Github API credentials, and Create Gist from Selection):
+
+h3. Get Gist by ID ("Subscribe to Command":http://gist.github.com/59759)
+
+<% uv(:lang => 'javascript', :line_numbers => true, :theme => 'sunburst') do -%>
+// Get & copy a Gist by ID
+CmdUtils.CreateCommand({
+  name: "gist-copy",
+  icon: "http://gist.github.com/favicon.ico",
+  author: {name: "Mike Green", email: "mike.is.green@gmail.com"},
+  takes: {"gist": noun_arb_text},
+  preview: function(pblock, theGist) {
+    var urlTemplate = "http://gist.github.com/${gist}.txt";
+    var gistURL = CmdUtils.renderTemplate(urlTemplate, {gist: theGist.text});
+    CmdUtils.previewGet(pblock, gistURL, {}, function(data) {
+      pblock.innerHTML = data;
+    });
+  },
+  execute: function(theGist) {
+    var urlTemplate = "http://gist.github.com/${gist}.txt";
+    var gistURL = CmdUtils.renderTemplate(urlTemplate, {gist: theGist.text});
+    jQuery.get(gistURL, {}, function(data) {
+      CmdUtils.copyToClipboard(data);
+      displayMessage("Gist " + theGist.text + " copied to clipboard.");
+    });
+  }
+});
+<% end -%>
+
+h3. Store Github API Credentials ("Subscribe to Command":http://gist.github.com/59776)
+
+<% uv(:lang => 'javascript', :line_numbers => true, :theme => 'sunburst') do -%>
+CmdUtils.CreateCommand({
+  name: "github-auth",
+  icon: "http://gist.github.com/favicon.ico",
+  author: {name: "Mike Green", email: "mike.is.green@gmail.com", url: "http://mikedamage.github.com"},
+  description: "Saves your Github login and API token in Firefox's keychain. Needed to create new Gists via Ubiquity.",
+  takes: {"username api-token": noun_arb_text},
+  preview: function(pblock) { pblock.innerHTML = this.description; },
+  execute: function(userToken) {
+    var data = userToken.text.split(' ');
+    var user = data[0];
+    var token = data[1];
+    CmdUtils.savePassword({
+      name: user,
+      password: token
+    });
+    displayMessage("Github credentials for " + user + " saved.");
+  }
+});
+<% end -%>
+
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
