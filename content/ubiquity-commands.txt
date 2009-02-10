@@ -1,0 +1,16 @@
+---
+title:      Ubiquity Commands
+created_at: 2009-02-09 21:28:13.274920 -05:00
+keywords: ubiquity, mozilla, firefox, addons, plugins, javascript, userscripts
+description: A collection of commands for Mozilla Ubiquity that I've written
+layout: ubiquity_commands
+misc_header: |
+  <link rel="webpage-commands" href="/ubiquity/commands.js" type="text/javascript" />
+filter:
+  - erb
+  - textile
+---
+
+h2(title). Ubiquity Commands
+
+Here's where I collect all the various commands I write for "Mozilla Ubiquity":http://ubiquity.mozilla.com/, a really cool extension for Firefox. If you don't use Firefox, you should probably "get it now":http://www.firefox.com. If you want to, you can also subscribe to this page using Ubiquity and keep up to date with all my commands. I won't try to do anything fishy with your computer, I promise! You can even look at the "source code":/ubiquity/commands.js of my command feed to see what you're getting.
