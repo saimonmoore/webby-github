@@ -5,6 +5,9 @@ dirty: false
 layout: default
 blog_post:  true
 navigation_item: false
+sitemap: true
+changefreq: daily
+priority: 0.7
 tags:
   - tag 1
   - tag 2

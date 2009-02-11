@@ -6,6 +6,9 @@ blog_post:  true
 navigation_item: false
 keywords: ubiquity, mozilla, firefox, addons, github, gist
 description: using Mozilla Ubiquity to create and copy Github Gists
+sitemap: true
+changefreq: never
+priority: 0.7
 tags:
   - github
   - firefox

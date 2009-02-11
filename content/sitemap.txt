@@ -1,0 +1,21 @@
+---
+extension: xml
+layout: nil
+filter:
+  - erb
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<% @pages.find(:all, :sitemap => true).each do |page| %>
+	<url>
+		<loc>http://mikedamage.github.com<%= page.url %></loc>
+		<lastmod><%= page.mtime.strftime("%Y-%m-%d") %></lastmod>
+		<% if page.changefreq %>
+		<changefreq><%= page.changefreq %></changefreq>
+		<% end %>
+		<% if page.priority %>
+		<priority><%= page.priority %></priority>
+		<% end %>
+	</url>
+	<% end %>
+</urlset>
