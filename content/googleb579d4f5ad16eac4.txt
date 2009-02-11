@@ -1,0 +1,15 @@
+---
+extension: html
+layout: nil
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>googleb579d4f5ad16eac4</title>
+</head>
+<body>
+	<h1>Google Verification Page</h1>
+	<p>This should be deleted soon. It's just to verify my site with Google Webmaster Tools.</p>
+</body>
+</html>
