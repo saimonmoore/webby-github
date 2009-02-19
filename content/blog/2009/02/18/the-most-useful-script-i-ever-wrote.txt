@@ -1,0 +1,64 @@
+--- 
+title:      The Most Useful Script I Ever Wrote
+created_at: 2009-02-18 21:05:14.304601 -05:00
+layout: default
+blog_post:  true
+navigation_item: false
+sitemap: true
+changefreq: monthly
+priority: 0.8
+keywords: "quicksilver, manpage, applescript, reference, programming, osx"
+description: "The most useful script I ever wrote: a manpage lookup script for Quicksilver on OS X"
+tags:
+  - quicksilver
+  - applescript
+  - reference
+  - manpage
+filter:
+  - erb
+  - textile
+--- 
+
+h2(post_title). The Most Useful Script I Ever Wrote
+
+Let me cut to the chase. By far, the most useful script I ever wrote is a @man@ page lookup script that works as a "Quicksilver":http://docs.blacktree.com/quicksilver/what_is_quicksilver action.
+
+If you're not in the know (i.e. if you don't use one of the *NIX operating systems like Linux or Mac OS X), @man@ is a command line utility that finds, formats, and displays documentation for just about any installed command line program on your system. It's something I refer to several times every day and it's saved my ass more than once. Utilities like @grep@, @curl@, and the dreaded @sed@ are hard to totally memorize, so @man@ comes in really handy when I'm writing shell scripts or looking for stuff inside of files, not to mention using Git. All of Git's help documentation is contained in handy @man@ pages that get displayed whenever you type @git help [COMMAND]@.
+
+Anyway, I setup a trigger to open Quicksilver in text entry mode whenever I hit CTRL-ALT-M, then whatever I type is piped into the man page looker-upper. When I hit enter, it looks up the man page, strips out the old-school UNIX terminal formatting, saves the result to a file to save time on repeat lookups, and finally displays it in a QuickLook window using @qlmanage@. Here's the code:
+
+You can also "download this script":/scripts/LookupManPage.scpt as an Apple Script Editor file.
+
+<% uv(:lang => 'applescript', :line_numbers => true, :theme => 'sunburst') do %>
+using terms from application "Quicksilver"
+	on process text theString
+		(* CHANGE THESE 2 VARIBALES TO SUIT YOUR FANCY: *)
+		set manFile to "/users/mike/documents/manpages/" & theString & ".txt"
+		set manDir to "/users/mike/documents/manpages/"
+		
+		tell application "Finder"
+			if exists file manFile then
+				do shell script "qlmanage -p " & manFile
+			else
+				try
+					do shell script "man " & theString
+				on error
+					display dialog "No Manual Entry For " & theString
+					return
+				end try
+				do shell script "man " & theString & " | col -b >> " & manFile & " && qlmanage -p " & manFile
+			end if
+		end tell
+	end process text
+end using terms from
+<% end %>
+
+After customizing the paths in the script, drop it into @~/Library/Application Support/Quicksilver/Actions/@. It's now available as an action to Quicksilver. To use it, either do what I did and setup a trigger to go directly to it, or hit your QS shortcut (usually CTRL-Space), hit the period key (".") to enter text entry mode, type the name of a command, hit Tab, and start typing "Lookup...". Quicksilver should find the action you're looking for. Hit Enter and voila! Man page in a QuickLook window. Quick, easy, and convenient.
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript" src="http://disqus.com/forums/mikedamageblog/embed.js"></script>
+<noscript>
+	<a href="http://mikedamageblog.disqus.com/?url=ref">View the discussion thread.</a>
+</noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
